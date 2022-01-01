@@ -1,7 +1,6 @@
-package com.deal.template.config;
+package com.deal.image.config;
 
 import cn.hutool.core.util.StrUtil;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 

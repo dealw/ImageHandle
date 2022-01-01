@@ -1,4 +1,4 @@
-package com.deal.template.config;
+package com.deal.image.config;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.async.DeferredResult;
-import springfox.documentation.builders.*;
-import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.ApiInfo;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.service.ResponseMessage;
@@ -23,7 +23,7 @@ import java.util.List;
 public class SwaggerConfiguration {
     @Bean
     public Docket testApi() {
-        return createDocket("测试接口", "test");
+        return createDocket("图片处理接口", "image");
     }
     @Bean
     public Docket userApi() {
@@ -50,8 +50,8 @@ public class SwaggerConfiguration {
     private List<Parameter> commonHeaderParameters()
     {
         List<Parameter> pars = Lists.newArrayList();
-        pars.add(new ParameterBuilder().name("id").modelRef(new ModelRef("string"))
-                .description("基本id").defaultValue("0123456789ABC").parameterType("header").required(true).build());
+        /*pars.add(new ParameterBuilder().name("id").modelRef(new ModelRef("string"))
+                .description("基本id").defaultValue("0123456789ABC").parameterType("header").required(true).build());*/
         return pars;
     }
 
