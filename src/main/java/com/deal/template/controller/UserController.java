@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Api(tags = "测试类")
-@RequestMapping("/test")
-public class TestController {
+@Api(tags = "用户类")
+@RequestMapping("/user")
+public class UserController {
     @Resource
     private TestService testService;
 
     @GetMapping("/exception")
+    @ApiOperation("测试全局异常")
     public void textException(){
         int i = 1 / 0;
     }
