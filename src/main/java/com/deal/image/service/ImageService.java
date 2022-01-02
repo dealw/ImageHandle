@@ -1,6 +1,7 @@
 package com.deal.image.service;
 
 
+import net.sourceforge.tess4j.TesseractException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -22,4 +23,12 @@ public interface ImageService {
      * @Date 2022/1/2 0:07
      */
     String img2Binary(MultipartFile file, double grayR, double grayG, double grayB, int threshold, String resultPath) throws IOException;
+
+    /**
+     * 图像识别
+     *
+     * @Date 2022/1/2 12:48
+     * @Author Deal
+     */
+    String imgocr(MultipartFile file) throws IOException, TesseractException;
 }
