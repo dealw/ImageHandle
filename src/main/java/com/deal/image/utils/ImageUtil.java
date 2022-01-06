@@ -93,9 +93,39 @@ public class ImageUtil {
     public static String getOcr(BufferedImage binaryImage) throws TesseractException {
         Tesseract tesseract = new Tesseract();
         tesseract.setTessVariable("user_defined_dpi", "300");
+        //需要自己下载语言包放在此位置 位置可自定义
         tesseract.setDatapath("E:\\Tess4JLanguageData");
         tesseract.setLanguage("chi_sim");
         /*tesseract.setLanguage("eng");*/
         return tesseract.doOCR(binaryImage);
+    }
+
+    /**
+     * 抠图
+     *
+     * @return
+     * @Author Deal
+     * @Date 2022/1/6 21:50
+     */
+    public static BufferedImage circleImage(BufferedImage originalBufferedImage, BufferedImage binaryBufferedImage) {
+        int width = originalBufferedImage.getWidth();
+        int height = binaryBufferedImage.getHeight();
+
+        int black = new Color(0, 0, 0).getRGB();
+        int white = new Color(255, 255, 255).getRGB();
+
+        BufferedImage resultBufferImage = new BufferedImage(width, height, originalBufferedImage.getType());
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                int rgb = binaryBufferedImage.getRGB(i, j);
+                //把黑的部分抠出来
+                if (rgb == black) {
+                    resultBufferImage.setRGB(i, j, originalBufferedImage.getRGB(i, j));
+                }else {
+                    resultBufferImage.setRGB(i, j, white);
+                }
+            }
+        }
+        return resultBufferImage;
     }
 }

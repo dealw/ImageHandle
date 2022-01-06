@@ -47,4 +47,12 @@ public class ImageController {
     public String imgocr(@ApiParam("图片") MultipartFile file) throws TesseractException, IOException {
         return imageService.imgocr(file);
     }
+
+    @ApiOperation("抠图")
+    @PostMapping("circleImage")
+    public String circleImage(@ApiParam("原始图片") MultipartFile originalImage,
+                              @ApiParam("二值化图片")MultipartFile binaryImage,
+                              @ApiParam("抠图保存路径,以\\结尾")@RequestParam String resultPath) throws TesseractException, IOException {
+        return imageService.circleImage(originalImage,binaryImage,resultPath);
+    }
 }

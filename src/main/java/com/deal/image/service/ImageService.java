@@ -31,4 +31,12 @@ public interface ImageService {
      * @Author Deal
      */
     String imgocr(MultipartFile file) throws IOException, TesseractException;
+
+    /**
+     * 抠图
+     *
+     * @Author Deal
+     * @Date 2022/1/6 21:48
+     */
+    String circleImage(MultipartFile originalImage, MultipartFile binaryImage, String resultPath) throws IOException;
 }

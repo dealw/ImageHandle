@@ -66,4 +66,21 @@ public class ImageServiceImpl implements ImageService {
         //获取ocr数据
         return ImageUtil.getOcr(bufferedImage);
     }
+
+    /**
+     * 抠图
+     *
+     * @Author Deal
+     * @Date 2022/1/6 21:48
+     */
+    @Override
+    public String circleImage(MultipartFile originalImage, MultipartFile binaryImage, String resultPath) throws IOException {
+        BufferedImage originalBufferedImage = ImageIO.read(originalImage.getInputStream());
+        BufferedImage binaryBufferedImage = ImageIO.read(binaryImage.getInputStream());
+        BufferedImage circleBufferedImage = ImageUtil.circleImage(originalBufferedImage, binaryBufferedImage);
+        FileOutputStream fos = new FileOutputStream(resultPath + "抠图" + originalImage.getOriginalFilename());
+        ImageIO.write(circleBufferedImage, "jpg", fos);
+        fos.close();
+        return "OK!";
+    }
 }
